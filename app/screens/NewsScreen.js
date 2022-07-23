@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ScrollView, SafeAreaView, Image, Linking } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, SafeAreaView, Image, Linking, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ export default function NewsScreen (){
       axios.request(options)
       .then((response) => {
         setNews(response.data.articles)
-        console.log(response.data.articles);
+        //console.log(response.data.articles);
       })
       .catch(function (error) {
         console.error(error);
@@ -28,15 +28,15 @@ export default function NewsScreen (){
     }, []);
 
     return (
-      <SafeAreaView style={styles.container}>       
+      <SafeAreaView style={styles.container}>    
       <ScrollView style={ styles.scrollview }>
-        {news.map((news) => {
+        {news.map((news, index) => {
             return (
-            <View style={styles.news}>
+            <View style={[styles.news, {marginVertical:5}]} key={index}>
                 <Image style={ [styles.image, {width: '100%', height: 200}] } source={{uri:news.urlToImage}}></Image>
                 <Text style={ styles.tittle } >{news.title}</Text>
                 <Text style={ styles.fuente }>{news.author}</Text>
-                <Text style={ styles.content }>{news.content} </Text>
+                <Text style={ styles.content }>{news.description} </Text>
             </View>
          )
         })}
@@ -48,33 +48,34 @@ export default function NewsScreen (){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //alignItems: 'center',
-        //justifyContent: 'flex-start',
-        marginTop: '20%',
+        alignItems: 'center',
+        marginTop: StatusBar.currentHeight,
     },
     content: {
         margin: 5,
+        paddingBottom: 10,
+
     },
     fuente: {
         margin: 5,
-        color: 'gray'
+        paddingBottom: 5,
+
     }
     ,
     news: {
         borderStyle: 'solid',
-        borderWidth: 1,
+        borderWidth: 0.2,
         borderColor: 'gray',
-        width: '95%',
+        //width: '%',
         borderRadius: 10,
-        paddingBottom: 5,
         alignItems: 'flex-start',
     },
     scrollview: {
-        //alignItems: 'center',
+        marginVertical: 50,
+        padding: 5,
+        //width: '100%'
     },
     image: {
-        //width: '100%',
-        //height: 200,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
 
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: 25,
-        //position: 'absolute',
-        marginLeft: 5
+        marginLeft: 5,
+        paddingBottom: 5,
     }
 })
