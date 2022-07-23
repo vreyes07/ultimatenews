@@ -1,21 +1,22 @@
 import { View, Text, Image, StyleSheet, ImageBackground, TextInput, TouchableOpacity, Button} from 'react-native'
-import React from 'react'
+import {createStackNavigator} from '@react-navigation/stack';
 
-export default function WelcomeScreen() {
+
+export default function LoginScreen(navigation) {
   const [text, onChangeText] = React.useState('Useless Text');
   const [number, onChangeNumber] = React.useState(null);
   
   return (
-    <ImageBackground style = { styles.background} source = {require("../assets/background.jpg")}>
+    <ImageBackground style = { styles.background } source = {require("../assets/background.jpg")}>
       <View style={ styles.container }>
         <Image style={ styles.logo } source={require("../assets/logo-red.png")}></Image>
-        <TextInput style={styles.input} placeholder="useless placeholder" onChangeText={onChangeText} value={text}/>
-        <TextInput style={styles.input} placeholder="useless placeholder" onChangeText={onChangeNumber} value={number}/>
-        <TouchableOpacity style={styles.loginButton} onPress={() => Alert.alert('Login button pressed')}>
-          <Text style={styles.buttonText}>INICIAR SESION</Text>
+        <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeText} value={text}/>
+        <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeNumber} value={number}/>
+        <TouchableOpacity style={ styles.loginButton } onPress={() => Alert.alert('Login button pressed')}>
+          <Text style={ styles.buttonText }>INICIAR SESION</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.registerButton} onPress={() => Alert.alert('Register button pressed')}>
-          <Text style={styles.buttonText}>REGISTRO</Text>
+        <TouchableOpacity style={ styles.registerButton } onPress={() => Alert.alert('Register button pressed')}>
+          <Text style={ styles.buttonText }>REGISTRO</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center',
         justifyContent: 'center',
+        //width: '100%'
     },
     logo:{
         resizeMode: 'center'
