@@ -6,10 +6,18 @@ import LoginScreen from './app/screens/LoginScreen';
 import NewsScreen from './app/screens/NewsScreen';
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={{flex:1, }}>
-      <NewsScreen></NewsScreen>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen name='Login' component={ LoginScreen } options={{ headerShown: false}} />
+        <Stack.Screen name='News' component={ NewsScreen } options={{ headerShown: false}} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    //<Text></Text>
+
   );
 }
 

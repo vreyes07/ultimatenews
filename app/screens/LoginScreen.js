@@ -1,10 +1,11 @@
 import { View, Text, Image, StyleSheet, ImageBackground, TextInput, TouchableOpacity, Button} from 'react-native'
-import {createStackNavigator} from '@react-navigation/stack';
+import { useState, useEffect } from 'react';
+import {navigation} from '@react-navigation/stack';
 
 
-export default function LoginScreen(navigation) {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState(null);
+export default function LoginScreen({navigation}) {
+  const [text, onChangeText] = useState('');
+  const [number, onChangeNumber] = useState(null);
   
   return (
     <ImageBackground style = { styles.background } source = {require("../assets/background.jpg")}>
@@ -12,7 +13,7 @@ export default function LoginScreen(navigation) {
         <Image style={ styles.logo } source={require("../assets/logo-red.png")}></Image>
         <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeText} value={text}/>
         <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeNumber} value={number}/>
-        <TouchableOpacity style={ styles.loginButton } onPress={() => Alert.alert('Login button pressed')}>
+        <TouchableOpacity style={ styles.loginButton } onPress={() => navigation.navigate('News')}>
           <Text style={ styles.buttonText }>INICIAR SESION</Text>
         </TouchableOpacity>
         <TouchableOpacity style={ styles.registerButton } onPress={() => Alert.alert('Register button pressed')}>

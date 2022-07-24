@@ -1,8 +1,10 @@
 import { Text, View, StyleSheet, ScrollView, SafeAreaView, Image, Linking, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import {navigation} from '@react-navigation/stack';
+
 import axios from 'axios'
 
-export default function NewsScreen (){
+export default function NewsScreen ({navigation}){
     const [news, setNews] = useState([]);
 
     //base
@@ -78,7 +80,6 @@ const styles = StyleSheet.create({
     image: {
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-
     },
     tittle: {
         fontStyle: 'normal',
