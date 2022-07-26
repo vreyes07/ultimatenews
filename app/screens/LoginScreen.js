@@ -4,15 +4,17 @@ import {navigation} from '@react-navigation/stack';
 
 
 export default function LoginScreen({navigation}) {
-  const [text, onChangeText] = useState('');
-  const [number, onChangeNumber] = useState(null);
+  const [username, setUsername] = useState('');
+  const [pasword, setPassword] = useState(null);
+
+
   
   return (
     <ImageBackground style = { styles.background } source = {require("../assets/background.jpg")}>
       <View style={ styles.container }>
         <Image style={ styles.logo } source={require("../assets/logo-red.png")}></Image>
-        <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeText} value={text}/>
-        <TextInput style={ styles.input } placeholder="useless placeholder" onChangeText={onChangeNumber} value={number}/>
+        <TextInput style={ styles.input } placeholder="Nombre de usuario o correo electrónico" onChangeText={(username) => {setUsername(username)}} value={username}/>
+        <TextInput style={ styles.input }  secureTextEntry={true} placeholder="Contraseña" onChangeText={(username) => {setUsername(username)}} value={pasword}/>
         <TouchableOpacity style={ styles.loginButton } onPress={() => navigation.navigate('News')}>
           <Text style={ styles.buttonText }>INICIAR SESION</Text>
         </TouchableOpacity>
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
         marginBottom: 25,
         borderRadius: 30,
         color: 'gray',
-        padding: 10
+        padding: 10,
+        fontStyle: 'italic'
       }
 })
